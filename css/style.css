@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto+Condensed&family=Secular+One&display=swap');
+
+:root {
+
+    /* Fonts */
+    --title-font: 'Secular One';
+    --secondary-font: 'Lora';
+    --bread-font: 'Roboto Condensed';
+
+    /* Colors */
+    --font-white: #fff;
+    --font-yellow: #FFD029;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: linear-gradient(to right, #0C164D, #190B22);
+}
+
+.header__index {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem;
+}
+
+.header__banner h1 {
+    font-family: var(--title-font);
+    color: var(--font-white);
+    font-size: 4rem;
+}
+
+.header__banner p {
+    font-family: var(--secondary-font);
+    color: var(--font-yellow);
+    font-size: 1.5rem;
+}
+
+.header__search-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-label {
+    font-family: var(--secondary-font);
+    color: var(--font-yellow);
+    font-size: 1.2rem;
+}
+
+.search-input {
+    font-family: var(--bread-font);
+    color: var(--font-white);
+    font-size: 1rem;
+    width: 25rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    background-color: rgba(59, 66, 94, 0.6);
+}
+
+.search-button {
+    width: 4rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #FFD029;
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    font-size: 1rem;
+}
