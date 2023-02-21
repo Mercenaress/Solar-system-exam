@@ -72,3 +72,66 @@ body {
     font-weight: 600;
     font-size: 1rem;
 }
+
+.planet-wrapper {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--secondary-font);
+    font-size: 0.7rem;
+    color: #fff;
+    padding: 2rem;
+}
+
+.Solen,
+.Merkurius,
+.Venus,
+.Jorden,
+.Mars,
+.Jupiter,
+.Saturnus,
+.Uranus,
+.Neptunus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.Solen {
+    background-color: #FFD029;
+}
+
+.Merkurius {
+    background-color: #656565;
+}
+
+.Venus {
+    background-color: #ff8629;
+}
+
+.Jorden {
+    background-color: #1538c3;
+}
+
+.Mars {
+    background-color: #ff2929;
+}
+
+.Jupiter {
+    background-color: #fbbc50;
+}
+
+.Saturnus {
+    background-color: #f1dd96;
+}
+
+.Uranus {
+    background-color: #9cf5fb;
+}
+
+.Neptunus {
+    background-color: #000dfb;
+}
