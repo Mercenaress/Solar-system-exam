@@ -1,35 +1,42 @@
 const planetURL = "https://majazocom.github.io/Data/solaris.json";
 const planetsContainer = document.querySelector(".planet-wrapper");
 const planetInfoContainer = document.querySelector(".planetary-info");
+const searchButton = document.querySelector(".search-button");
 let planetArray = [];
 let pickedPlanet = [];
 
 fetchPlanetaryList();
+
+if (window.localStorage.length > 0)
 getLocalStorage();
 
+if (searchButton) {
+    searchFunction();
+}
+
 function getLocalStorage() {
-    let currentPlanet = JSON.parse(localStorage.getItem('planetInfo'));
-    let planetInfoCard = document.createElement("article");
-    planetInfoCard.className = 'planet-card';
-    planetInfoCard.innerHTML = (`
-    <h2>${currentPlanet.name}</h2>
-    <h3>${currentPlanet.latinName}</h3>
-    <p>${currentPlanet.desc}</p>
-    <section>
-    <h5>OMKRETS</h5>
-    <p>${currentPlanet.circumference}km</p>
-    <h5>KM FRÅN SOLEN</h5>
-    <p>${currentPlanet.distance}km</p>
-    <h5>MAX TEMPERATUR</h5>
-    <p>${currentPlanet.temp.day}°C</p>
-    <h5>MIN TEMPERATUR</h5>
-    <p>${currentPlanet.temp.night}°C</p>
-    </section>
-    <section>
-    <h5>MÅNAR</h5>
-    <p>${currentPlanet.moons}</p>
-    </section>
-    `);
+        let currentPlanet = JSON.parse(localStorage.getItem('planetInfo'));
+        let planetInfoCard = document.createElement("article");
+        planetInfoCard.className = 'planet-card';
+        planetInfoCard.innerHTML = `
+        <h2>${currentPlanet.name}</h2>
+        <h3>${currentPlanet.latinName}</h3>
+        <p>${currentPlanet.desc}</p>
+        <section>
+        <h5>OMKRETS</h5>
+        <p>${currentPlanet.circumference}km</p>
+        <h5>KM FRÅN SOLEN</h5>
+        <p>${currentPlanet.distance}km</p>
+        <h5>MAX TEMPERATUR</h5>
+        <p>${currentPlanet.temp.day}°C</p>
+        <h5>MIN TEMPERATUR</h5>
+        <p>${currentPlanet.temp.night}°C</p>
+        </section>
+        <section>
+        <h5>MÅNAR</h5>
+        <p>${currentPlanet.moons}</p>
+        </section>
+        `;
 
     if (planetInfoContainer) {
         planetInfoContainer.appendChild(planetInfoCard);
@@ -52,7 +59,7 @@ function fetchPlanetaryList() {
             `)
 
             planetInfoCard.className = "planet-card";
-            planetInfoCard.innerHTML = (`<p>${planetList[i].name}</p>`)
+            planetInfoCard.innerHTML = `<p>${planetList[i].name}</p>`
             
            if (planetsContainer) {
                planetsContainer.appendChild(spaceOrb);
@@ -74,7 +81,15 @@ function searchFunction() {
         console.log(input);
         
         let index = planetArray.findIndex(planet => planet.name.toLowerCase() === input.toLowerCase())
-        localStorage.setItem('planetInfo', JSON.stringify(planetArray[index]));
-        console.log(index);
+        
+        let searchResult = document.querySelector(".search-result");
+        searchResult.innerHTML = '';
+
+        try {
+            localStorage.setItem('planetInfo', JSON.stringify(planetArray[index]));
+            searchResult.innerHTML = `<a href="result.html">${planetArray[index].name}</a>`;
+        } catch {
+            searchResult.innerHTML = 'Planet not found';
+        }
     })
 }
