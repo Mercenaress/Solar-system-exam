@@ -22,19 +22,27 @@ function getLocalStorage() {
         <h2>${currentPlanet.name}</h2>
         <h3>${currentPlanet.latinName}</h3>
         <p>${currentPlanet.desc}</p>
-        <section>
+        <section class="info-box-wrapper">
+        <div>
         <h5>OMKRETS</h5>
         <p>${currentPlanet.circumference}km</p>
+        </div>
+        <div>
         <h5>KM FRÅN SOLEN</h5>
         <p>${currentPlanet.distance}km</p>
+        </div>
+        <div>
         <h5>MAX TEMPERATUR</h5>
         <p>${currentPlanet.temp.day}°C</p>
+        </div>
+        <div>
         <h5>MIN TEMPERATUR</h5>
         <p>${currentPlanet.temp.night}°C</p>
+        </div>
         </section>
-        <section>
+        <section class="moons">
         <h5>MÅNAR</h5>
-        <p>${currentPlanet.moons}</p>
+        <p>${currentPlanet.moons.map((moon) => `${moon}`).join(",  ")}</p>
         </section>
         `;
 
@@ -52,14 +60,7 @@ function fetchPlanetaryList() {
         for(let i = 0; i < planetList.length; i++) {
 
             let spaceOrb = document.createElement("article");
-            let planetInfoCard = document.createElement("article");
             spaceOrb.className = `${planetList[i].name}`;
-            spaceOrb.innerHTML = (`
-            <h2>${planetList[i].name}</h2>
-            `)
-
-            planetInfoCard.className = "planet-card";
-            planetInfoCard.innerHTML = `<p>${planetList[i].name}</p>`
             
            if (planetsContainer) {
                planetsContainer.appendChild(spaceOrb);
@@ -89,7 +90,7 @@ function searchFunction() {
             localStorage.setItem('planetInfo', JSON.stringify(planetArray[index]));
             searchResult.innerHTML = `<a href="result.html">${planetArray[index].name}</a>`;
         } catch {
-            searchResult.innerHTML = 'Planet not found';
+            searchResult.innerHTML = 'Hittade inga resultat';
         }
     })
 }
